@@ -1,0 +1,13 @@
+#{extends 'Blog/layout.html' /}
+#{set title:'Home' /}
+
+<div id="post-list">
+#{if posts}
+  #{list items:posts, as:'post'}
+    #{displayPost post:post, comments:comments /}
+  #{/list}
+#{/if}
+#{else}
+	<h2>There is no article.</h2>
+#{/else}
+</div>

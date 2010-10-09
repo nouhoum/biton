@@ -1,0 +1,13 @@
+# You can specialize this file for each language.
+# For example, for French create a messages.fr file
+#
+NewCategory=New category
+NewPost=New post
+ProfileTitle=Profile title
+FullName=Full name
+
+#Information messages
+info.success=Action performed with success
+
+#Error messages
+error.invalidInfo = Invalid informations 

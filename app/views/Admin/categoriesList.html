@@ -1,0 +1,16 @@
+#{extends 'Admin/layout.html' /}
+#{set title:'Biton Blog Engine' /}
+
+<table class="admin-table">
+  <tr>
+    <th>&{'Title'}</th>
+    <th>&{'Delete'}</th>
+  </tr>
+  #{list items:categories, as:'category'}
+  <tr class="${category_parity}">
+  	<td><a href="@{Admin.categoryForm(category.id)}">${category?.title}</a></td>
+  	<td><a href="@{Admin.deleteCategory(category.id)}">&{'Delete'}</a></td>
+  </tr>
+  #{/list}
+</table>
+

@@ -1,0 +1,37 @@
+#{extends 'Admin/layout.html' /}
+#{set title:'Biton Blog Engine' /}
+
+<div class="new-post">
+  <h2>&{'NewPost'}</h2>
+  #{form @create(post?.id)}
+    #{if flash.error}
+	<p class="error">
+	 &{flash.error}
+	</p>
+    #{/if}
+	#{if flash.success}
+	<p class="success">
+	 &{flash.success}
+	</p>
+  #{/if}
+		
+  <p>
+    <label>&{'Title'}</label>
+    <input type="text" id="title" name="title" size="40" value="${flash.title ? flash.title : post?.title}"/>
+  </p>
+  
+  <p>
+	<label for="content">&{'Content'}</label>
+	<textarea name="content" rows="12" cols="50">${flash.content ? flash.content : post?.contentAsString()}</textarea>
+  </p>
+  
+  <p>
+	<label for="content">&{'Category'}</label>
+	#{categorySelection categories:categories, selected:post?.category?.id /}
+  </p>
+  
+  <p class="button">
+	<input class="submit" type="submit" value="&{'Create'}">
+  </p>
+  #{/form}
+</div>

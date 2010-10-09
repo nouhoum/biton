@@ -1,0 +1,17 @@
+<!-- Indices written at Fri, 8 Oct 2010 22:52:23 CEST -->
+
+<datastore-indexes>
+
+    <!-- Used 4 times in query history -->
+    <datastore-index kind="Post" ancestor="false" source="auto">
+        <property name="online" direction="asc"/>
+        <property name="postedAt" direction="desc"/>
+    </datastore-index>
+
+    <!-- Used 1 time in query history -->
+    <datastore-index kind="Comment" ancestor="false" source="auto">
+        <property name="id" direction="asc"/>
+        <property name="postedAt" direction="desc"/>
+    </datastore-index>
+
+</datastore-indexes>

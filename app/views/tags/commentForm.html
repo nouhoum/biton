@@ -1,0 +1,18 @@
+#{form @Blog.createComment()}		
+<p>
+  <label>&{'Your name'}</label>
+  <input type="text" id="author" name="author" size="40" value="${flash.author}"/>
+</p>
+  
+<p>
+  <label for="content">&{'Comment'}</label>
+  <textarea name="content" rows="4" cols="60">${flash.content}</textarea>
+</p>
+
+<input type="hidden" name="postId" value="${_post?.id}"/>
+<input type="hidden" name="url" value="${_post?.url}"/>
+  
+<p class="button">
+  <input class="submit" type="submit" value="&{'Submit'}">
+</p>
+#{/form}

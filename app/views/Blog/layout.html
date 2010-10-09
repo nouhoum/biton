@@ -1,0 +1,28 @@
+#{extends 'base.html' /}
+#{set title:'Monzon Blog Engine' /}
+
+<div id="content">
+  #{doLayout /}
+</div>
+
+<div id="navigation">
+  <div id="profile">
+    #{if setting}
+    <h2>${setting?.fullName}</h2>
+      #{if setting.avatar}
+      <div class="avatar"><img src="@{Blog.avatar}"/></div>
+      #{/if}
+    <p>${setting?.description}</p>
+    #{/if}
+  </div>
+  <div id="categories">
+    #{if categories?.size()}
+    <h2>&{'Categories'}</h2>
+    <ul>
+      #{list items:categories, as:'category'}
+        <li><a href="@{Blog.postsOfCategory(category.title)}">${category.title}(${category.countOfOnlinePost()})</a></li>
+      #{/list}
+    </ul>
+    #{/if}
+  </div>
+</div>

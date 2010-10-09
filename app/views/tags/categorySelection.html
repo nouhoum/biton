@@ -1,0 +1,10 @@
+#{if _categories}
+<select name="categoryId" id="categoryId">
+  <option value="">Select the category</option>
+  #{list items:_categories, as:'category'}
+  <option value="${category.id}" ${_selected == category.id ? 'selected="selected"' : ''}>
+    ${category.title}
+  </option>
+  #{/list}
+</select>
+#{/if}

@@ -1,0 +1,55 @@
+#{extends 'base.html' /}
+#{set title:'Home' /}
+
+<div id="registration">
+  <h2>Your information</h2>
+  #{form @install()}
+  	#{if flash.error}
+	  <p class="error">
+		&{flash.error}
+	  </p>
+	#{/if}
+	#{if flash.success}
+	  <p class="success">
+		&{flash.success}
+	  </p>
+	#{/if}
+  <div class="group">
+    <p>
+      <label>&{'FullName'}</label>
+      <input type="text" id="fullName" name="fullName" value="${flash.fullName}"/>
+    </p>
+  
+    <p>
+      <label>&{'Username'}</label>
+      <input type="text" id="username" name="username" value="${flash.username}"/>
+    </p>
+  
+    <p>
+      <label>&{'Email'}</label>
+      <input type="text" id="email" name="email" value="${flash.email}"/>
+    </p>
+  
+    <p>
+	  <label for="password">&{'Password'}</label>
+	  <input type="password" id="password" name="password" value=""/>
+    </p>
+    
+  </div>
+  
+  <div class="group">
+    <p>
+      <label>&{'ProfileTitle'}</label>
+      <input type="text" id="title" name="title" value="${flash.title}"/>
+    </p>
+  
+    <p>
+	  <label for="description">&{'Description'}</label>
+	  <textarea name="description" rows="12" cols="50">${flash.description}</textarea>
+    </p>
+  </div>
+  <p class="submit-button">
+	<input type="submit" value="&{'Save'}">
+  </p>
+  #{/form}
+</div>

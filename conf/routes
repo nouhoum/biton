@@ -1,0 +1,38 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET     /                                       Blog.index
+
+GET     /signin                                 Blog.login
+GET     /logout                                 Blog.logout
+GET     /about                                  Blog.about
+POST    /authenticate                           Blog.authenticate
+
+GET     /articles/new                           Admin.postForm
+GET     /articles/{url}                    		Blog.view
+
+GET     /categories/new/			            Admin.categoryForm
+POST    /categories/create                      Admin.createCategory
+
+GET     /categories/{title}                     Blog.postsOfCategory
+
+POST	/comments/create						Blog.createComment
+
+GET     /install                                Installation.index
+GET     /admin/?	                            Admin.index
+GET     /admin/settings                         Admin.settings
+POST    /admin/photo							Admin.uploadPhoto
+
+GET     /admin/posts                         	Admin.postsList
+GET     /admin/posts/publish/{<[0-9]+>id} 		Admin.publishPost
+GET     /admin/posts/unpublish/{<[0-9]+>id} 	Admin.unpublishPost
+
+GET     /admin/categories                      	Admin.categoriesList
+
+# Map static resources from the /app/public folder to the /public path
+GET     /public/                                staticDir:public
+
+# Catch all
+*       /{controller}/{action}                  {controller}.{action}

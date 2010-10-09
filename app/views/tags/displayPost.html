@@ -1,0 +1,31 @@
+<div class="post">
+  <h2 class="title"><a href="@{Blog.view(_post.url)}">${_post?.title}</a></h2>
+
+  <div class="post-meta-info">
+  	<h4 class="author"><span>&{'Author'}: </span>${_post?.author}</h4>  	  	
+  	<span class="comment-count"><a href="#comments">${_post.commentCount} comment(s)</a></span>  	
+	<span class="views">&{'Viewed'} ${_post?.views} times</span>
+	<span class="posted-at">&{'Posted'}: ${new java.text.SimpleDateFormat().format(_post?.postedAt)}</span>
+  </div>
+
+  <div class="content">
+  	${_post.contentAsString().raw()}
+  </div>
+  
+  <h4><a id="post-comment" href="#comment-form">Post a comment</a></h4>
+  <div id="comment-form">
+    #{commentForm post:_post/}
+  </div>
+  
+  #{if _comments && _showComments}
+  <div id="comments">
+    #{list items:_comments, as:'comment'}
+    <div class="row ${comment_parity}">
+      <span class="author-name">${comment?.author}</span>
+      <span class="posted-at">${new java.text.SimpleDateFormat().format(comment?.postedAt)}</span>
+      <p>${comment?.content}</p>
+    </div>
+    #{/list}
+  </div>
+  #{/if}
+</div>

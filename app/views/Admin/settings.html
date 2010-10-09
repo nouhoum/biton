@@ -1,0 +1,20 @@
+#{extends 'Admin/layout.html' /}
+#{set title:'Biton Blog Engine' /}
+
+<div class="settings">
+  #{if flash.error}
+	<p class="error">
+	 &{flash.error}
+	</p>
+    #{/if}
+	#{if flash.success}
+	<p class="success">
+	 &{flash.success}
+	</p>
+  #{/if}	
+  
+  <form action="@{Admin.uploadPhoto}" method="POST" enctype="multipart/form-data">
+    <input type="file" id="photo" name="photo" />
+    <input type="submit" value="&{'Upload'}"/>
+  </form>
+</div>

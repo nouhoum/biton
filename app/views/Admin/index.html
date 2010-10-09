@@ -1,0 +1,15 @@
+#{extends 'Admin/layout.html' /}
+#{set title:'Biton Blog Engine' /}
+
+<div class="summary">
+  <div class="box">
+    <span class="highlighted-number">${categories?.size()}</span> <a href="@{Admin.categoriesList}">categorie(s)</a>.
+  </div>
+  <div class="box">
+    <span class="highlighted-number">${posts?.size()}</span> <a href="@{Admin.postsList}">post(s)</a>.
+    <p>
+      <span class="online">${onlineCount} online </span> and 
+      <span class="offline">${offlineCount} offline</span>
+    </p>
+   </div>
+</div>

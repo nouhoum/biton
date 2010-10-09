@@ -1,0 +1,27 @@
+#{extends 'base.html' /}
+#{set title:'Biton Blog Engine' /}
+
+<div>
+  
+  <ul id="dashboard"><h2>&{'Dashboard'}</h2> 	
+    <li>
+      #{if categories}
+      <ul class="categories"><h3><a href="@{Admin.categoriesList}">&{'Categories'}</a></h3>
+        <li><a href="@{Admin.categoryForm}">&{'NewCategory'}</a></li>    
+      </ul>
+      #{/if}
+      #{else}
+      <h3>There is no category.</h3>
+      #{/else}
+    </li>
+    <li><h3><a href="@{Admin.postsList}">&{'Posts'}</a></h3>
+      <ul>
+        <li><a href="@{Admin.postForm}">&{'NewPost'}</a></li>        
+      </ul>      
+    </li>
+    <li><a href="@{Admin.settings()}">&{'Settings'}</a></li>
+  </ul>
+  <div id="admin-content">
+    #{doLayout /}
+  </div>
+</div>

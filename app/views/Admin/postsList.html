@@ -1,0 +1,27 @@
+#{extends 'Admin/layout.html' /}
+#{set title:'Biton Blog Engine' /}
+
+<table class="posts-list">
+  <tr>
+    <th>&{'Title'}</th>
+    <th>&{'Status'}</th>
+    <th>&{'(Un)Publish'}</th>
+    <th>&{'Delete'}</th>
+  </tr>
+  #{list items:posts, as:'post'}
+  <tr class="${post_parity}">
+  	#{if post.online == true}
+  	<td><a href="@{Admin.postForm(post?.id)}">${post?.title}</a></td>
+  	<td class="online">&{'Online'}</td>
+  	<td><a href="@{Admin.unpublishPost(post?.id)}">&{'Unpublish'}</a></td>
+  	#{/if}
+  	#{else}
+  	<td><a href="@{Admin.postForm(post?.id)}">${post?.title}</a></td>
+  	<td class="offline">&{'Offline'}</td>
+  	<td><a href="@{Admin.publishPost(post?.id)}">&{'Publish'}</a></td>
+  	#{/else}
+  	<td><a href="@{Admin.deletePost(post?.id)}">&{'Delete'}</a></td>
+  </tr>
+  #{/list}
+</table>
+

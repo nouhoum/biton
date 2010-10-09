@@ -1,0 +1,20 @@
+#{extends 'base.html' /}
+#{set title:'Biton Blog Engine' /}
+
+<div id="login">
+  <h2>Connexion</h2>
+  #{form @authenticate()}
+  <p>
+    <label>&{'Email'}</label>
+    <input type="text" id="email" name="email" value="${flash.email}"/>
+  </p>
+  <p>
+	<label for="password">&{'Password'}</label>
+	<input type="password" id="password" name="password" value=""/>
+  </p>
+  
+  <p class="submit-button">
+	<input type="submit" value="&{'Login'}">
+  </p>
+  #{/form}
+</div>

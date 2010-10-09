@@ -1,0 +1,17 @@
+#{extends 'Blog/layout.html' /}
+#{set title:'Home' /}
+
+<div id="post-list">
+<h2>Viewing posts of '${title}' category.</h2>
+#{if posts}
+  #{list items:posts, as:'post'}
+  <div class="post ${post_parity}">
+    <h2><a href="@{Blog.view(post.url)}">${post?.title}</a></h2>
+    <p class="content">${post?.contentAsString()}</p>
+  </div>
+  #{/list}
+#{/if}
+#{else}
+	<h2>There is no article.</h2>
+#{/else}
+</div>
