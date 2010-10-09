@@ -4,10 +4,12 @@
 NewCategory=New category
 NewPost=New post
 ProfileTitle=Profile title
-FullName=Full name
+FullName = Full name
 
 #Information messages
 info.success=Action performed with success
 
 #Error messages
 error.invalidInfo = Invalid informations 
+
+
