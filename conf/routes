@@ -11,7 +11,7 @@ GET     /about                                  Blog.about
 POST    /authenticate                           Blog.authenticate
 
 GET     /articles/new                           Admin.postForm
-GET     /articles/{url}                    		Blog.view
+GET     /articles/{id}/{url}                    Blog.view
 
 GET     /categories/new/			            Admin.categoryForm
 POST    /categories/create                      Admin.createCategory
