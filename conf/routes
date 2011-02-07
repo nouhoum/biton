@@ -16,6 +16,7 @@ GET     /articles/{id}/{url}                    Blog.view
 GET     /categories/new/			            Admin.categoryForm
 POST    /categories/create                      Admin.createCategory
 
+GET     /captcha		                        Blog.showCaptcha
 GET     /categories/{title}                     Blog.postsOfCategory
 
 POST	/comments/create						Blog.createComment

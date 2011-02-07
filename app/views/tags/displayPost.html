@@ -1,5 +1,5 @@
 <div class="post ${_post_parity}">
-  <h2 class="title"><a href="@{Blog.view(_post.url)}">${_post?.title}</a></h2>
+  <h2 class="title"><a href="@{Blog.view(_post.id, _post.url)}">${_post?.title}</a></h2>
 
   <div class="post-meta-info">
   	<h4 class="author"><span>&{'Author'}: </span>${_post?.author}</h4>  	  	
@@ -14,7 +14,7 @@
   
   <h4><a id="post-comment" href="#comment-form">Post a comment</a></h4>
   <div id="comment-form">
-    #{commentForm post:_post/}
+    #{commentForm post:_post, randomID: _randomID /}
   </div>
   
   #{if _comments && _showComments}

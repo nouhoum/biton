@@ -11,6 +11,13 @@
 
 <input type="hidden" name="postId" value="${_post?.id}"/>
 <input type="hidden" name="url" value="${_post?.url}"/>
+
+<p>
+  <label for="code">&{'CaptchaMessage'} </label>
+  <img src="@{Blog.showCaptcha(_randomID)}" />
+  <input type="text" name="code" id="code" size="18" value="" />
+  <input type="hidden" name="randomID" value="${_randomID}" />
+</p>
   
 <p class="button">
   <input class="submit" type="submit" value="&{'Submit'}">

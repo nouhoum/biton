@@ -101,7 +101,10 @@ public class Admin extends Secure {
 	public static void create(Long id, @Required String title, String content, @Required Long categoryId) {
 		System.out.println("Content is = " + content);
 		Post post = null;
-		Category category = Category.findById(categoryId);
+		Category category = null;
+		if(categoryId != null) {
+			category = Category.findById(categoryId);	
+		}		
 		
 		if(id == null) {
 			post = new Post(connectedUser().sreenName(), title,	new Blob(content.getBytes()), 
@@ -117,7 +120,7 @@ public class Admin extends Secure {
 		if(validation.hasErrors()) {
 			validation.keep();
 			params.flash();
-			informError(Messages.get("Information incorrecte"));
+			informError(Messages.get("error.invalidInfo"));
 			render("@postForm", post);
 		} 
 		if(id == null) { //Creating a new post.

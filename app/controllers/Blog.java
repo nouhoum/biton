@@ -3,8 +3,11 @@ package controllers;
 import java.io.ByteArrayInputStream;
 import java.util.List;
 
+import play.cache.Cache;
 import play.data.validation.Required;
 import play.i18n.Messages;
+import play.libs.Codec;
+import play.libs.Images;
 
 import models.Category;
 import models.Comment;
@@ -13,6 +16,12 @@ import models.Post;
 import models.Setting;
 import models.User;
 
+/**
+ * This represents the main controller of the blog engine.
+ * 
+ * @author nouhoum
+ *
+ */
 public class Blog extends Application {
 	public static void index() {
 		List<Post> posts = Post.all().filter("online", true).order("-postedAt").fetch();
@@ -26,14 +35,15 @@ public class Blog extends Application {
 		}
 	}
 	
-	public static void view(String url) {
-		Post post = Post.all().filter("online", true).filter("url", url).get();
+	public static void view(Long id , String url) {
+		Post post = Post.all().filter("online", true).filter("id", id).get();
 		notFoundIfNull(post);
 		post.views++;
 		post.update();
 		List<Comment> comments = post.comments();
 		int commentCount = comments.size();
-		render(post, comments, commentCount);
+		String randomID = Codec.UUID();
+		render(post, comments, commentCount, randomID);
 	}
 	
 	public static void postsOfCategory(String title) {
@@ -55,8 +65,14 @@ public class Blog extends Application {
 			@Required Long postId,
 			@Required String url,
 			@Required String author, 
-			@Required String content) {
+			@Required(message="Please type a content") String content,
+			@Required String code,
+			String randomID) {
 		System.out.println("Url " + url);
+		System.out.println("Code = " + code);
+		System.out.println("RandomID = " + randomID);
+		System.out.println("Cache.get(randomID) = " + Cache.get(randomID));
+		validation.equals(code, Cache.get(randomID)).message("Invalid code! Retry please.");
 		if(validation.hasErrors()) {
 			validation.keep();
 			params.flash();
@@ -66,9 +82,10 @@ public class Blog extends Application {
 			new Comment(post, content, author).insert();
 			post.commentCount++;
 			post.update();
-			informSuccess(Messages.get("info.success"));			
+			informSuccess(Messages.get("info.success"));
+			Cache.delete(randomID);
 		}	
-		view(url);
+		view(postId, url);
 	}
 	
 	public static void login() {
@@ -88,6 +105,13 @@ public class Blog extends Application {
     	}
     	connect(user);
     	index();
+    }
+    
+    public static void showCaptcha(String id) {
+    	Images.Captcha captcha = Images.captcha();
+    	String code = captcha.getText("#111");
+    	Cache.set(id, code, "10mn");
+    	renderBinary(captcha);
     }
     
 	public static void about() {

@@ -1,5 +1,6 @@
 package controllers;
 
+import models.Category;
 import models.Setting;
 import models.User;
 import play.data.validation.Required;
@@ -31,6 +32,7 @@ public class Installation extends Application {
 		} else {
 			new User(true, fullName, username, email, password).insert();
 			new Setting(true, email, title, description, fullName).insert();
+			new Category("Default", "Default category").insert();
 			redirect("/");
 		}
 	}

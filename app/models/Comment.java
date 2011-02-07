@@ -7,7 +7,12 @@ import play.data.validation.Required;
 import siena.Id;
 import siena.Model;
 import siena.Query;
-
+/**
+ * Represents comments on a blog post.
+ * 
+ * @author nouhoum
+ *
+ */
 public class Comment extends Model {
 	@Id
 	public Long id;
@@ -17,6 +22,7 @@ public class Comment extends Model {
 	public String author;
 	public String content;
 	public Date postedAt;
+	public boolean online;
 	
 	public Comment(Post post, String content, String author) {
 		this.post = post;
