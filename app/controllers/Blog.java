@@ -68,10 +68,6 @@ public class Blog extends Application {
 			@Required(message="Please type a content") String content,
 			@Required String code,
 			String randomID) {
-		System.out.println("Url " + url);
-		System.out.println("Code = " + code);
-		System.out.println("RandomID = " + randomID);
-		System.out.println("Cache.get(randomID) = " + Cache.get(randomID));
 		validation.equals(code, Cache.get(randomID)).message("Invalid code! Retry please.");
 		if(validation.hasErrors()) {
 			validation.keep();
